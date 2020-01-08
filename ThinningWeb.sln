@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thinning.Web", "src\Thinning.Web\Thinning.Web.csproj", "{97F2774D-2653-4EDB-8CA2-C0171E12935B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Thinning.Web", "src\Thinning.Web\Thinning.Web.csproj", "{97F2774D-2653-4EDB-8CA2-C0171E12935B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thinning.Service", "src\Thinning.Service\Thinning.Service.csproj", "{F1E88E52-6B3F-43D3-9C1F-659CA759ACC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thinning.Repository", "src\Thinning.Repository\Thinning.Repository.csproj", "{B92035C2-6A62-42C8-8ED4-3C079D060501}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{97F2774D-2653-4EDB-8CA2-C0171E12935B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97F2774D-2653-4EDB-8CA2-C0171E12935B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97F2774D-2653-4EDB-8CA2-C0171E12935B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1E88E52-6B3F-43D3-9C1F-659CA759ACC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1E88E52-6B3F-43D3-9C1F-659CA759ACC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1E88E52-6B3F-43D3-9C1F-659CA759ACC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1E88E52-6B3F-43D3-9C1F-659CA759ACC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B92035C2-6A62-42C8-8ED4-3C079D060501}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B92035C2-6A62-42C8-8ED4-3C079D060501}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B92035C2-6A62-42C8-8ED4-3C079D060501}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B92035C2-6A62-42C8-8ED4-3C079D060501}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
