@@ -1,8 +1,8 @@
 ﻿namespace Thinning.Web
 {
     using Autofac;
-    using Thinning.Repository;
-    using Thinning.Repository.Interfaces;
+    using Thinning.Persistence;
+    using Thinning.Persistence.Interfaces;
 
     public class DatabaseAutofacModule : Module
     {

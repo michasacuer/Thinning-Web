@@ -9,7 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Thinning.Repository\Thinning.Repository.csproj" />
+    <ProjectReference Include="..\Thinning.Domain\Thinning.Domain.csproj" />
+    <ProjectReference Include="..\Thinning.Persistence\Thinning.Persistence.csproj" />
     <ProjectReference Include="..\Thinning.Service\Thinning.Service.csproj" />
   </ItemGroup>
 

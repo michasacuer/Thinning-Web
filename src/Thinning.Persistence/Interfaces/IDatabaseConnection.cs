@@ -1,4 +1,4 @@
-﻿namespace Thinning.Repository.Interfaces
+﻿namespace Thinning.Persistence.Interfaces
 {
     using System.Data;
     

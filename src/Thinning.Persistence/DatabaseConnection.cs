@@ -1,9 +1,9 @@
-﻿namespace Thinning.Repository
+﻿namespace Thinning.Persistence
 {
     using System;
     using System.Data;
     using System.Data.SqlClient;
-    using Thinning.Repository.Interfaces;
+    using Thinning.Persistence.Interfaces;
 
     public class DatabaseConnection : IDatabaseConnection, IDisposable
     {
