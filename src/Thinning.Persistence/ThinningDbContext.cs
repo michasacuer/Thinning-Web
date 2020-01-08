@@ -2,8 +2,9 @@
 {
     using Microsoft.EntityFrameworkCore;
     using Thinning.Domain;
+    using Thinning.Persistence.Interfaces;
 
-    public class ThinningDbContext : DbContext
+    public class ThinningDbContext : DbContext, IThinningDbContext
     {
         public ThinningDbContext(DbContextOptions<ThinningDbContext> options)
             : base(options)

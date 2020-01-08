@@ -3,9 +3,12 @@ namespace Thinning.Web
     using Autofac;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Thinning.Persistence;
+    using Thinning.Persistence.Interfaces;
 
     public class Startup
     {
@@ -25,6 +28,9 @@ namespace Thinning.Web
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddScoped<IThinningDbContext, ThinningDbContext>();
+            services.AddDbContext<ThinningDbContext>(options =>
+                options.UseSqlServer(_configuration.GetConnectionString("ThinningDatabase")));
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
