@@ -1,5 +1,7 @@
 ﻿namespace Thinning.Persistence.Interfaces
 {
+    using System.Threading;
+    using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Infrastructure;
     using Thinning.Domain;
@@ -13,5 +15,7 @@
         DbSet<TestPcInfo> TestPcInfos { get; set; }
         DbSet<Image> Images { get; set; }
         DatabaseFacade Database { get; }
+
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }

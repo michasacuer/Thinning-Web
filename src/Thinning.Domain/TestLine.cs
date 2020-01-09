@@ -10,6 +10,7 @@
         public int AlgorithmId { get; set; }
         public Algorithm Algorithm { get; set; }
         public int Iterations { get; set; }
+        public double AvgExecutionTime { get; set; }
 
         public ICollection<TestRun> TestRuns { get; set; }
     }

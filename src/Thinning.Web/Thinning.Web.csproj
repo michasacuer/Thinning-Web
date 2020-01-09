@@ -13,7 +13,11 @@
   <ItemGroup>
     <ProjectReference Include="..\Thinning.Domain\Thinning.Domain.csproj" />
     <ProjectReference Include="..\Thinning.Persistence\Thinning.Persistence.csproj" />
-    <ProjectReference Include="..\Thinning.Service\Thinning.Service.csproj" />
+    <ProjectReference Include="..\Thinning.Application\Thinning.Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Api\" />
   </ItemGroup>
 
 </Project>
