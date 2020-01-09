@@ -1,6 +1,7 @@
 ﻿namespace Thinning.Persistence.Interfaces
 {
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Infrastructure;
     using Thinning.Domain;
     
     public interface IThinningDbContext
@@ -11,5 +12,6 @@
         DbSet<TestRun> TestRuns { get; set; }
         DbSet<TestPcInfo> TestPcInfos { get; set; }
         DbSet<Image> Images { get; set; }
+        DatabaseFacade Database { get; }
     }
 }

@@ -2,20 +2,28 @@ namespace Thinning.Web
 {
     using Autofac.Extensions.DependencyInjection;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.Extensions.Configuration;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Infrastructure;
+    using Microsoft.EntityFrameworkCore.Storage;
+    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
-    
+    using Thinning.Persistence.Interfaces;
+
     public class Program
     {
         public static void Main(string[] args)
         {
-            var configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json", optional: false)
-                .Build();
+            var host = CreateHostBuilder(args).Build();
 
-            var connectionString = configuration.GetConnectionString("ThinningDatabase");
+            using var serviceScope = host.Services.CreateScope();
+            var context = serviceScope.ServiceProvider.GetRequiredService<IThinningDbContext>();
 
-            CreateHostBuilder(args).Build().Run();
+            if(!context.Database.GetService<IRelationalDatabaseCreator>().Exists())
+            {
+                context.Database.Migrate();
+            }
+
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
