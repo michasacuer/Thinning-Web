@@ -3,12 +3,21 @@
     using MediatR;
     using System.Threading;
     using System.Threading.Tasks;
+    using Thinning.Domain.Dao.Test;
+    using Thinning.Service.Interfaces;
 
     public class AddTestCommandHandler : AsyncRequestHandler<AddTestCommand>
     {
-        protected override Task Handle(AddTestCommand request, CancellationToken cancellationToken)
+        public ITestService _testService;
+
+        public AddTestCommandHandler(ITestService testService)
         {
-            throw new System.NotImplementedException();
+            _testService = testService;
+        }
+
+        protected override async Task Handle(AddTestCommand request, CancellationToken cancellationToken)
+        {
+            await _testService.AddTestAsync(new AddTestDao(request.TestLines, request.PcInfo, request.Images));
         }
     }
 }

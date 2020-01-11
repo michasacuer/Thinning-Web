@@ -3,8 +3,8 @@
     using System.Threading.Tasks;
     using Thinning.Domain;
     
-    public interface ITestRepository
+    public interface ITestRepository : IBaseRepository<Test>
     {
-        Task AddAsync(Test test);
+        Task AddTestAsync(Test test);
     }
 }

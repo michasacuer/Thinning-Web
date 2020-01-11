@@ -6,6 +6,6 @@
     public interface IBaseRepository<T>
         where T : class
     {
-        Task SaveAsync(CancellationToken cancellationToken = default);
+        Task CommitAsync(CancellationToken cancellationToken = default);
     }
 }

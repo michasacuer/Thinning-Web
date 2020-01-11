@@ -15,7 +15,7 @@
             _thinningDbContext = thinningDbContext;
         }
 
-        public async Task SaveAsync(CancellationToken cancellationToken = default)
+        public async Task CommitAsync(CancellationToken cancellationToken = default)
         {
             await _thinningDbContext.SaveChangesAsync(cancellationToken);
         }

@@ -7,14 +7,12 @@
 
     public class TestRepository : BaseRepository<Test>, ITestRepository
     {
-        private readonly IThinningDbContext _thinningDbContext;
-
         public TestRepository(IThinningDbContext thinningDbContext)
             : base(thinningDbContext)
         {
         }
 
-        public async Task AddAsync(Test test)
+        public async Task AddTestAsync(Test test)
         {
             await _thinningDbContext.Tests.AddAsync(test);
         }

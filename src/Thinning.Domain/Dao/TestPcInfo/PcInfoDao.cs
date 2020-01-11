@@ -1,4 +1,4 @@
-﻿namespace Thinning.Service.Dao.TestPcInfo
+﻿namespace Thinning.Domain.Dao.TestPcInfo
 {
     public class PcInfoDao
     {

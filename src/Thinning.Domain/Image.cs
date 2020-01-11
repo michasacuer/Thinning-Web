@@ -1,5 +1,7 @@
 ﻿namespace Thinning.Domain
 {
+    using Thinning.Domain.Dao.Image;
+    
     public class Image
     {
         public int ImageId { get; set; }
@@ -12,5 +14,18 @@
         public int OriginalHeight { get; set; }
         public int OriginalBpp { get; set; }
         public bool TestImage { get; set; }
+
+        public Image()
+        {
+        }
+
+        public Image(ImageDao imageDao)
+        {
+            ImageContent = imageDao.ImageContent;
+            OriginalWidth = imageDao.OriginalWidth;
+            OriginalHeight = imageDao.OriginalHeight;
+            OriginalBpp = imageDao.OriginalBpp;
+            TestImage = imageDao.TestImage;
+        }
     }
 }
