@@ -2,6 +2,7 @@ namespace Thinning.Web
 {
     using System.Reflection;
     using Autofac;
+    using FluentValidation.AspNetCore;
     using MediatR;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -13,6 +14,7 @@ namespace Thinning.Web
     using Thinning.Persistence;
     using Thinning.Persistence.Interfaces;
     using Thinning.Web.Filters;
+    using Thinning.Web.Filters.Validator;
 
     public class Startup
     {
@@ -35,12 +37,16 @@ namespace Thinning.Web
                 .AddNewtonsoftJson(options =>
                 {
                     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-                });
+                })
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AddTestValidator>());
+
             services.AddRazorPages();
             services.AddServerSideBlazor();
+
             services.AddScoped<IThinningDbContext, ThinningDbContext>();
             services.AddDbContext<ThinningDbContext>(options =>
                 options.UseSqlServer(_configuration.GetConnectionString("ThinningDatabase")));
+
             services.AddMediatR(typeof(AddTestCommandHandler).GetTypeInfo().Assembly);
         }
 
