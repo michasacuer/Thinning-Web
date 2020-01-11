@@ -18,6 +18,11 @@
             _connection = connection;
         }
 
+        public Task<bool> AddAlgorithmAsync(string algorithmName)
+        {
+
+        }
+
         public async Task<IEnumerable<Algorithm>> GetAlgorithmsByNameAsync(IEnumerable<string> names)
         {
             var parameters = new DynamicParameters();

@@ -37,6 +37,17 @@
             var algorithmNames = request.TestLines.Select(line => line.AlgorithmName);
             var testAlgorithms = await _algorithmRepository.GetAlgorithmsByNameAsync(algorithmNames);
 
+            var notMatchedNames = algorithmNames.Where(name => !testAlgorithms.Any(algorithm => algorithm.Name == name));
+            if (notMatchedNames.Any())
+            {
+                foreach (string name in notMatchedNames)
+                {
+                    await _algorithmRepository.AddAlgorithmAsync(name);
+                }
+
+                await _algorithmRepository.CommitAsync();
+            }
+
             foreach (var testLine in request.TestLines)
             {
                 testLine.AlgorithmId =
