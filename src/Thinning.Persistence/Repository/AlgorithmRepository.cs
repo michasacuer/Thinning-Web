@@ -18,9 +18,9 @@
             _connection = connection;
         }
 
-        public Task<bool> AddAlgorithmAsync(string algorithmName)
+        public async Task AddAlgorithmAsync(string algorithmName)
         {
-
+            await _thinningDbContext.Algorithms.AddAsync(new Algorithm { Name = algorithmName });
         }
 
         public async Task<IEnumerable<Algorithm>> GetAlgorithmsByNameAsync(IEnumerable<string> names)

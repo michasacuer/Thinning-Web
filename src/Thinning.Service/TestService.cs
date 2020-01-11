@@ -46,7 +46,7 @@
                 }
 
                 await _algorithmRepository.CommitAsync();
-            }
+            }   
 
             foreach (var testLine in request.TestLines)
             {

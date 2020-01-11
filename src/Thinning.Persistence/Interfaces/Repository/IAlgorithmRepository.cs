@@ -7,6 +7,6 @@
     public interface IAlgorithmRepository : IBaseRepository<Algorithm>
     {
         Task<IEnumerable<Algorithm>> GetAlgorithmsByNameAsync(IEnumerable<string> names);
-        Task<bool> AddAlgorithmAsync(string algorithmName);
+        Task AddAlgorithmAsync(string algorithmName);
     }
 }
