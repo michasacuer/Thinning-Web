@@ -19,8 +19,4 @@
     <ProjectReference Include="..\Thinning.Application\Thinning.Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Api\" />
-  </ItemGroup>
-
 </Project>
