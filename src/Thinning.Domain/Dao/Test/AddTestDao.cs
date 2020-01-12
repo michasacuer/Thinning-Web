@@ -14,8 +14,8 @@
             Images = images;
         }
 
-        public List<TestLineDao> TestLines { get; set; }
         public PcInfoDao PcInfo { get; set; }
+        public List<TestLineDao> TestLines { get; set; }
         public List<ImageDao> Images { get; set; }
     }
 }

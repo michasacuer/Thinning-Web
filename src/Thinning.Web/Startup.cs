@@ -1,6 +1,5 @@
 namespace Thinning.Web
 {
-    using System.Reflection;
     using Autofac;
     using FluentValidation.AspNetCore;
     using MediatR;
@@ -13,6 +12,10 @@ namespace Thinning.Web
     using Thinning.Application.Test.Command.AddTest;
     using Thinning.Persistence;
     using Thinning.Persistence.Interfaces;
+    using Thinning.Persistence.Interfaces.Repository;
+    using Thinning.Persistence.Repository;
+    using Thinning.Service;
+    using Thinning.Service.Interfaces;
     using Thinning.Web.Filters;
     using Thinning.Web.Filters.Validator;
 
@@ -43,11 +46,16 @@ namespace Thinning.Web
             services.AddRazorPages();
             services.AddServerSideBlazor();
 
+            services.AddScoped<ITestService, TestService>();
+
+            services.AddScoped<IDatabaseConnection, DatabaseConnection>();
+            services.AddScoped<IAlgorithmRepository, AlgorithmRepository>();
+            services.AddScoped<ITestRepository, TestRepository>();
             services.AddScoped<IThinningDbContext, ThinningDbContext>();
             services.AddDbContext<ThinningDbContext>(options =>
                 options.UseSqlServer(_configuration.GetConnectionString("ThinningDatabase")));
 
-            services.AddMediatR(typeof(AddTestCommandHandler).GetTypeInfo().Assembly);
+            services.AddMediatR(typeof(AddTestCommandHandler).Assembly);
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
