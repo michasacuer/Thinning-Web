@@ -26,7 +26,7 @@
             
             var test = new Test(request);
             test.ActivationStatusCode = ActivationStatusCode.Audit;
-            test.ActivationUrl = new Guid().ToString();
+            test.ActivationUrl = Guid.NewGuid().ToString().Replace('-', '&');
 
             await _testRepository.AddTestAsync(test);
             await _testRepository.CommitAsync();
@@ -34,7 +34,7 @@
 
         private async Task AlgorithmIdsToRequest(AddTestDao request)
         {
-            var algorithmNames = request.TestLines.Select(line => line.AlgorithmName);
+            var algorithmNames = request.Images.Select(image => image.AlgorithmName);
             var testAlgorithms = await _algorithmRepository.GetAlgorithmsByNameAsync(algorithmNames);
 
             var notMatchedNames = algorithmNames.Where(name => !testAlgorithms.Any(algorithm => algorithm.Name == name));
@@ -46,7 +46,8 @@
                 }
 
                 await _algorithmRepository.CommitAsync();
-            }   
+                testAlgorithms = await _algorithmRepository.GetAlgorithmsByNameAsync(algorithmNames);
+            }
 
             foreach (var testLine in request.TestLines)
             {

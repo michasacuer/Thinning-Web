@@ -17,7 +17,7 @@
 
         protected override async Task Handle(AddTestCommand request, CancellationToken cancellationToken)
         {
-            await _testService.AddTestAsync(new AddTestDao(request.TestLines, request.PcInfo, request.Images));
+            await _testService.AddTestAsync(new AddTestDao(request.Sent, request.TestLines, request.PcInfo, request.Images));
         }
     }
 }

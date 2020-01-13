@@ -22,6 +22,7 @@
 
         public TestLine(TestLineDao testLineDao)
         {
+            TestRuns = new List<TestRun>();
             AlgorithmId = testLineDao.AlgorithmId.GetValueOrDefault();
             Iterations = testLineDao.Iterations;
 

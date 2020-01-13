@@ -21,6 +21,7 @@
 
         public Image(ImageDao imageDao)
         {
+            AlgorithmId = imageDao.AlgorithmId.GetValueOrDefault();
             ImageContent = imageDao.ImageContent;
             OriginalWidth = imageDao.OriginalWidth;
             OriginalHeight = imageDao.OriginalHeight;

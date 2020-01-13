@@ -41,4 +41,3 @@ BEGIN
  
    RETURN;
 END
-GO

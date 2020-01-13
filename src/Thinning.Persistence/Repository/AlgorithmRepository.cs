@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Data;
+    using System.Linq;
     using System.Threading.Tasks;
     using Dapper;
     using Thinning.Domain;
@@ -26,7 +27,7 @@
         public async Task<IEnumerable<Algorithm>> GetAlgorithmsByNameAsync(IEnumerable<string> names)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@names", names);
+            parameters.Add("@names", string.Join(",", names.ToArray()));
 
             var connection = _connection.GetOpenConnection();   
             return await connection.QueryAsync<Algorithm>("GetAlgorithmsByName", parameters, commandType: CommandType.StoredProcedure);
