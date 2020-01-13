@@ -7,6 +7,7 @@ namespace Thinning.Web
     using Microsoft.EntityFrameworkCore.Storage;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Thinning.Persistence;
     using Thinning.Persistence.Interfaces;
 
     public class Program
@@ -21,6 +22,10 @@ namespace Thinning.Web
             if(!context.Database.GetService<IRelationalDatabaseCreator>().Exists())
             {
                 context.Database.Migrate();
+
+                var dbConnection = serviceScope.ServiceProvider.GetRequiredService<IDatabaseConnection>();
+                var createProcedures = new CreateProcedures(dbConnection);
+                createProcedures.Execute();
             }
 
             host.Run();

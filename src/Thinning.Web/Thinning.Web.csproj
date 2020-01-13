@@ -18,6 +18,7 @@
     <ProjectReference Include="..\Thinning.Domain\Thinning.Domain.csproj" />
     <ProjectReference Include="..\Thinning.Persistence\Thinning.Persistence.csproj" />
     <ProjectReference Include="..\Thinning.Application\Thinning.Application.csproj" />
+    <ProjectReference Include="..\Thinning.Service\Thinning.Service.csproj" />
   </ItemGroup>
 
 </Project>
