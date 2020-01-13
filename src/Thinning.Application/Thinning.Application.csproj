@@ -13,4 +13,8 @@
     <ProjectReference Include="..\Thinning.Service\Thinning.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Test\Command\NewFolder\" />
+  </ItemGroup>
+
 </Project>

@@ -11,7 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Thinning.Domain", "src\Thin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Thinning.Persistence", "src\Thinning.Persistence\Thinning.Persistence.csproj", "{AE55E0A9-C9DA-4EB9-AB70-A00EBDDC0B03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thinning.Service", "src\Thinning.Service\Thinning.Service.csproj", "{DB0CB965-DFEA-40B6-ABEE-FB46AA0FD39A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Thinning.Service", "src\Thinning.Service\Thinning.Service.csproj", "{DB0CB965-DFEA-40B6-ABEE-FB46AA0FD39A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{56BFE1F2-0F19-4FCA-90FB-C80AA8737840}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thinning.Tests.Web", "tests\Thinning.Tests.Web\Thinning.Tests.Web.csproj", "{B5409CB1-6A0D-416F-A1E2-3CACAB3B9B11}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,9 +43,16 @@ Global
 		{DB0CB965-DFEA-40B6-ABEE-FB46AA0FD39A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB0CB965-DFEA-40B6-ABEE-FB46AA0FD39A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB0CB965-DFEA-40B6-ABEE-FB46AA0FD39A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5409CB1-6A0D-416F-A1E2-3CACAB3B9B11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5409CB1-6A0D-416F-A1E2-3CACAB3B9B11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5409CB1-6A0D-416F-A1E2-3CACAB3B9B11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5409CB1-6A0D-416F-A1E2-3CACAB3B9B11}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B5409CB1-6A0D-416F-A1E2-3CACAB3B9B11} = {56BFE1F2-0F19-4FCA-90FB-C80AA8737840}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {335F6EC7-E408-4C06-A5C5-4C896BAA9EDB}
