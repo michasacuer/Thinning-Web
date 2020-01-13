@@ -1,8 +1,8 @@
-CREATE PROCEDURE GetAlgorithmsByName
+CREATE PROCEDURE [dbo].[GetAlgorithmsByName]
 
-@names StringList READONLY
+@names NVARCHAR(MAX)
 
 AS
 BEGIN
-	SELECT ALgorithmId, Name From Algorithms WHERE Name IN (SELECT Item FROM @names)
+	SELECT ALgorithmId, Name From Algorithms WHERE Name IN (SELECT Item FROM dbo.SplitString(@names, ','))
 END
