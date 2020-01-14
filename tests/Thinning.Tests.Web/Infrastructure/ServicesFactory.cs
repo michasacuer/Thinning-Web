@@ -13,7 +13,8 @@
         {
             using var services = CreateServiceCollection().BuildServiceProvider().CreateScope();
 
-            var context = services.ServiceProvider.GetRequiredService<IThinningDbContext>();
+            var context = services.ServiceProvider.GetRequiredService<ThinningDbContext>();
+            ContextDataSeeding.Run(ref context);
 
             return new ServicesModel
             {
