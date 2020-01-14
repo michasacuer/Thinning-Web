@@ -4,11 +4,11 @@
     using System.Collections.Generic;
     using Thinning.Domain;
     using Thinning.Domain.Enum;
-    using Thinning.Persistence;
-    
+    using Thinning.Persistence.Interfaces;
+
     public class ContextDataSeeding
     {
-        public static void Run(ref ThinningDbContext context)
+        public static void Run(ref IThinningDbContext context)
         {
             var tests = new List<Test>();
             for (int i = 0; i < 10; i++)
@@ -22,7 +22,7 @@
             }
 
             context.Tests.AddRange(tests);
-            context.SaveChanges();
+            context.SaveChangesAsync();
 
             var algorithms = new List<Algorithm>();
             for (int i = 0; i < 4; i++)
@@ -31,7 +31,7 @@
             }
 
             context.Algorithms.AddRange(algorithms);
-            context.SaveChanges();
+            context.SaveChangesAsync();
 
             var testLines = new List<TestLine>();
             for (int i = 0; i < 10; i++)
@@ -45,7 +45,7 @@
             }
 
             context.TestLines.AddRange(testLines);
-            context.SaveChanges();
+            context.SaveChangesAsync();
 
             Random random = new Random();
             var testRuns = new List<TestRun>();
@@ -63,7 +63,7 @@
             }
 
             context.TestRuns.AddRange(testRuns);
-            context.SaveChanges();
+            context.SaveChangesAsync();
         }
     }
 }

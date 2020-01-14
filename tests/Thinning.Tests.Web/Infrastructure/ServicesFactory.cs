@@ -11,14 +11,16 @@
     {
         public static ServicesModel CreateProperServices()
         {
-            using var services = CreateServiceCollection().BuildServiceProvider().CreateScope();
+            var services = CreateServiceCollection().BuildServiceProvider().CreateScope();
+            var context = services.ServiceProvider.GetRequiredService<IThinningDbContext>();
+            var connection = new DatabaseConnection("FAKE");
 
-            var context = services.ServiceProvider.GetRequiredService<ThinningDbContext>();
             ContextDataSeeding.Run(ref context);
 
             return new ServicesModel
             {
-                Context = context
+                Context = context,
+                Connection = connection
             };
         }
 
@@ -29,7 +31,7 @@
             string AspNetCoreEnvironment = "ASPNETCORE_ENVIRONMENT";
 
             var basePath
-                = AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.IndexOf("Tests")) + "src/Thinning.Web";
+                = AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.IndexOf("tests")) + "src\\Thinning.Web";
 
             var builder = new ConfigurationBuilder()
                 .SetBasePath(basePath)

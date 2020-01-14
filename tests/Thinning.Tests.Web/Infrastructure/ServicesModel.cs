@@ -5,5 +5,6 @@
     public class ServicesModel
     {
         public IThinningDbContext Context { get; set; }
+        public IDatabaseConnection Connection { get; set; }
     }
 }

@@ -7,7 +7,6 @@
     {
         public AcceptTestValidator()
         {
-            RuleFor(x => x.TestId).NotEmpty();
             RuleFor(x => x.Guid).NotEmpty();
             RuleFor(x => x.Accepted).NotEmpty();
         }

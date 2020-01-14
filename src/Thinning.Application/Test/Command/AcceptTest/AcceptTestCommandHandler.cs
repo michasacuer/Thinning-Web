@@ -6,7 +6,7 @@
     using Thinning.Domain.Dao.Test;
     using Thinning.Service.Interfaces;
 
-    public class AcceptTestCommandHandler : AsyncRequestHandler<AcceptTestCommand>
+    public class AcceptTestCommandHandler : IRequestHandler<AcceptTestCommand>
     {
         public ITestService _testService;
 
@@ -15,9 +15,11 @@
             _testService = testService;
         }
 
-        protected override async Task Handle(AcceptTestCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(AcceptTestCommand request, CancellationToken cancellationToken)
         {
             await _testService.AcceptTestAsync(new AcceptTestDao(request.Guid, request.Accepted));
+
+            return Unit.Value;
         }
     }
 }
