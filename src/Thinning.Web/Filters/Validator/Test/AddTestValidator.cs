@@ -1,4 +1,4 @@
-﻿namespace Thinning.Web.Filters.Validator
+﻿namespace Thinning.Web.Filters.Validator.Test
 {
     using FluentValidation;
     using Thinning.Application.Test.Command.AddTest;

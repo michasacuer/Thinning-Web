@@ -17,7 +17,7 @@ namespace Thinning.Web
     using Thinning.Service;
     using Thinning.Service.Interfaces;
     using Thinning.Web.Filters;
-    using Thinning.Web.Filters.Validator;
+    using Thinning.Web.Filters.Validator.Test;
 
     public class Startup
     {

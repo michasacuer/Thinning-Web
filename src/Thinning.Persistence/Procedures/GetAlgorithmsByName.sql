@@ -4,5 +4,5 @@ CREATE PROCEDURE [dbo].[GetAlgorithmsByName]
 
 AS
 BEGIN
-	SELECT ALgorithmId, Name From Algorithms WHERE Name IN (SELECT Item FROM dbo.SplitString(@names, ','))
+	SELECT AlgorithmId, Name From Algorithms WHERE Name IN (SELECT Item FROM dbo.SplitString(@names, ','))
 END

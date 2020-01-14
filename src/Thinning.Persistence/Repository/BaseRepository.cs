@@ -1,23 +1,16 @@
 ﻿namespace Thinning.Persistence.Repository
 {
-    using System.Threading;
-    using System.Threading.Tasks;
     using Thinning.Persistence.Interfaces;
     using Thinning.Persistence.Interfaces.Repository;
 
     public abstract class BaseRepository<T> : IBaseRepository<T>
         where T : class
     {
-        protected readonly IThinningDbContext _thinningDbContext;
+        protected readonly IDatabaseConnection _databaseConnection;
 
-        public BaseRepository(IThinningDbContext thinningDbContext)
+        public BaseRepository(IDatabaseConnection databaseConnection)
         {
-            _thinningDbContext = thinningDbContext;
-        }
-
-        public async Task CommitAsync(CancellationToken cancellationToken = default)
-        {
-            await _thinningDbContext.SaveChangesAsync(cancellationToken);
+            _databaseConnection = databaseConnection;
         }
     }
 }

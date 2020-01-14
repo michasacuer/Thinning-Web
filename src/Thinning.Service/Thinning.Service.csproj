@@ -9,4 +9,8 @@
     <ProjectReference Include="..\Thinning.Persistence\Thinning.Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Implementations\" />
+  </ItemGroup>
+
 </Project>

@@ -6,5 +6,6 @@
     public interface ITestService
     {
         Task AddTestAsync(AddTestDao request);
+        Task AcceptTestAsync(AcceptTestDao request);
     }
 }

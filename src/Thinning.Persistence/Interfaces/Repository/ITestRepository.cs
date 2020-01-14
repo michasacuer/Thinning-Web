@@ -5,6 +5,6 @@
     
     public interface ITestRepository : IBaseRepository<Test>
     {
-        Task AddTestAsync(Test test);
+        Task<Test> GetTestById(int testId);
     }
 }
