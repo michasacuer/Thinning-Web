@@ -7,7 +7,7 @@
 
     public interface ITestRepository : IBaseRepository<Test>
     {
-        Task<Test> GetTestById(int testId);
-        Task<GridResponse<TestDto>> GetTestList(int size, int skip, string orderDir, string orderBy);
+        Task<TestDetailsDto> GetTestByIdAsync(int testId);
+        Task<GridResponse<TestDto>> GetTestListAsync(int size, int skip, string orderDir, string orderBy);
     }
 }

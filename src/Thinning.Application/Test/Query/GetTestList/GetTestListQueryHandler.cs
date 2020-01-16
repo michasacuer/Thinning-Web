@@ -18,7 +18,7 @@
 
         public async Task<GridResponse<TestDto>> Handle(GetTestListQuery request, CancellationToken cancellationToken)
         {
-            return await _testService.GetTestList(request.Size, request.Skip, request.OrderDir, request.OrderBy);
+            return await _testService.GetTestListAsync(request.Size, request.Skip, request.OrderDir, request.OrderBy);
         }
     }
 }

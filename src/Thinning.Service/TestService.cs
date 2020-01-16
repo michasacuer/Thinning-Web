@@ -18,17 +18,20 @@
         private ITestRepository _testRepository;
         private IAlgorithmRepository _algorithmRepository;
         private IPcInfoRepository _pcInfoRepository;
+        private ITestLineRepository _testLineRepository;
         private IThinningDbContext _context;
 
         public TestService(
             ITestRepository testRepository,
             IAlgorithmRepository algorithmRepository,
             IThinningDbContext context,
-            IPcInfoRepository pcInfoRepository)
+            IPcInfoRepository pcInfoRepository,
+            ITestLineRepository testLineRepository)
         {
             _testRepository = testRepository;
             _algorithmRepository = algorithmRepository;
             _pcInfoRepository = pcInfoRepository;
+            _testLineRepository = testLineRepository;
             _context = context;
         }
 
@@ -59,13 +62,24 @@
             await _context.SaveChangesAsync();
         }
 
-        public async Task<GridResponse<TestDto>> GetTestList(int size, int skip, string orderDir, string orderBy)
+        public async Task<TestDetailsDto> GetTestDetailsAsync(int testId)
+        {
+            var test = await _testRepository.GetTestByIdAsync(testId)
+                    ?? throw new EntityNotFoundException("Test not found in dbo.Tests");
+
+            test.PcInfo = await _pcInfoRepository.GetTestPcInfo(testId);
+            test.TestLines = await _testLineRepository.GetTestLinesAsync(testId);
+
+            return test;
+        }
+
+        public async Task<GridResponse<TestDto>> GetTestListAsync(int size, int skip, string orderDir, string orderBy)
         {
             size = size == 0 ? 5 : size;
             orderDir = string.IsNullOrWhiteSpace(orderDir) ? "asc" : orderDir;
             orderBy = string.IsNullOrWhiteSpace(orderBy) ? "TestId" : orderBy;
 
-            var grid = await _testRepository.GetTestList(size, skip, orderDir, orderBy);
+            var grid = await _testRepository.GetTestListAsync(size, skip, orderDir, orderBy);
             foreach (var test in grid.List)
             {
                 test.TestPcInfo = await _pcInfoRepository.GetTestPcInfo(test.TestId);

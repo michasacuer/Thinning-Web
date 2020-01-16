@@ -4,6 +4,7 @@
     using Microsoft.AspNetCore.Mvc;
     using Thinning.Application.Test.Command.AcceptTest;
     using Thinning.Application.Test.Command.AddTest;
+    using Thinning.Application.Test.Query.GetTestDetails;
     using Thinning.Application.Test.Query.GetTestList;
     using Thinning.Domain.Dao;
     using Thinning.Domain.Dao.Test;
@@ -26,6 +27,12 @@
         public async Task<ActionResult<GridResponse<TestDto>>> GetTestList(GetTestListQuery query)
         {
             return Ok(await Mediator.Send(query));
+        }
+
+        [HttpGet("details/{testId}")]
+        public async Task<ActionResult<TestDetailsDto>> GetTestDetails(int testId)
+        {
+            return Ok(await Mediator.Send(new GetTestDetailsQuery { TestId = testId }));
         }
     }
 }

@@ -16,16 +16,16 @@
         {
         }
 
-        public async Task<Test> GetTestById(int testId)
+        public async Task<TestDetailsDto> GetTestByIdAsync(int testId)
         {
             var parameters = new DynamicParameters();
             parameters.Add("@testId", testId);
 
             var connection = _databaseConnection.GetOpenConnection();
-            return await connection.QueryFirstOrDefaultAsync<Test>("GetTestById", parameters, commandType: CommandType.StoredProcedure);
+            return await connection.QueryFirstOrDefaultAsync<TestDetailsDto>("GetTestById", parameters, commandType: CommandType.StoredProcedure);
         }
 
-        public async Task<GridResponse<TestDto>> GetTestList(int size, int skip, string orderDir, string orderBy)
+        public async Task<GridResponse<TestDto>> GetTestListAsync(int size, int skip, string orderDir, string orderBy)
         {
             var parameters = new DynamicParameters();
             parameters.Add("@size", size);

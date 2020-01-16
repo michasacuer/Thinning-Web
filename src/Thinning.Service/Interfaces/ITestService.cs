@@ -8,6 +8,7 @@
     {
         Task AddTestAsync(AddTestDao request);
         Task AcceptTestAsync(AcceptTestDao request);
-        Task<GridResponse<TestDto>> GetTestList(int size, int skip, string orderDir, string orderBy);
+        Task<GridResponse<TestDto>> GetTestListAsync(int size, int skip, string orderDir, string orderBy);
+        Task<TestDetailsDto> GetTestDetailsAsync(int testId);
     }
 }
