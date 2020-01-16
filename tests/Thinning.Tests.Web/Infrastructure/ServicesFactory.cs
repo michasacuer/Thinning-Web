@@ -40,8 +40,7 @@
                 .AddJsonFile($"appsettings.{AspNetCoreEnvironment}.json", optional: true)
                 .AddEnvironmentVariables();
 
-            IConfiguration configuration = builder.Build();
-
+            var configuration = builder.Build();
             services.AddDbContext<IThinningDbContext, ThinningDbContext>(c => c.UseInMemoryDatabase(Guid.NewGuid().ToString()));
 
             return services;

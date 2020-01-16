@@ -9,6 +9,7 @@
     using Thinning.Persistence.Interfaces;
     using Thinning.Persistence.Repository;
     using Thinning.Service;
+    using Thinning.Service.Exception;
     using Thinning.Service.Interfaces;
     using Thinning.Tests.Web.Infrastructure;
 
@@ -43,6 +44,19 @@
             var acceptedTest = _context.Tests.Find(1);
             acceptedTest.ShouldNotBeNull();
             acceptedTest.ActivationStatusCode.ShouldBe(ActivationStatusCode.Accepted);
+        }
+
+        [Fact]
+        public async Task AcceptComandShouldThrowIfTestNotFound()
+        {
+            var command = new AcceptTestCommand
+            {
+                Accepted = true,
+                Guid = "SomeRandom"
+            };
+
+            var commandHandler = new AcceptTestCommandHandler(_testService);
+            await commandHandler.Handle(command, CancellationToken.None).ShouldThrowAsync<EntityNotFoundException>();
         }
     }
 }
