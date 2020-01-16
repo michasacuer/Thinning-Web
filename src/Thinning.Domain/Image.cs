@@ -9,6 +9,8 @@
         public Test Test { get; set; }
         public int? AlgorithmId { get; set; }
         public Algorithm Algorithm { get; set; }
+        public int? TestLineId { get; set; }
+        public TestLine TestLine { get; set; }
         public byte[] ImageContent { get; set; }
         public int OriginalWidth { get; set; }
         public int OriginalHeight { get; set; }

@@ -15,6 +15,7 @@
         public double AvgExecutionTime { get; set; }
 
         public ICollection<TestRun> TestRuns { get; set; }
+        public ICollection<Image> Images { get; set; }
 
         public TestLine()
         {
@@ -23,6 +24,7 @@
         public TestLine(TestLineDao testLineDao)
         {
             TestRuns = new List<TestRun>();
+            Images = new List<Image>();
             AlgorithmId = testLineDao.AlgorithmId.GetValueOrDefault();
             Iterations = testLineDao.Iterations;
 
@@ -32,6 +34,11 @@
             foreach (var run in testLineDao.AlgorithmTestRuns)
             {
                 TestRuns.Add(new TestRun(run));
+            }
+
+            foreach (var image in testLineDao.TestLineImages)
+            {
+                Images.Add(new Image(image));
             }
         }
     }
