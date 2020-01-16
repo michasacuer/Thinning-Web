@@ -47,6 +47,9 @@
 
             await _context.Tests.AddAsync(test);
             await _context.SaveChangesAsync();
+
+            MapImagesToTestLines(test);
+            await _context.SaveChangesAsync();
         }
 
         private async Task AlgorithmIdsToRequest(AddTestDao request)
@@ -76,6 +79,19 @@
             {
                 image.AlgorithmId =
                     testAlgorithms.Where(algorithm => algorithm.Name == image.AlgorithmName).First().AlgorithmId;
+            }
+        }
+
+        private void MapImagesToTestLines(Test test)
+        {
+            foreach (var image in test.Images)
+            {
+                if (!image.TestImage)
+                {
+                    image.TestLineId =
+                        test.TestLines.Where(testLine => testLine.TestId == image.TestId && testLine.AlgorithmId == image.AlgorithmId)
+                                      .First().TestLineId;
+                }
             }
         }
     }

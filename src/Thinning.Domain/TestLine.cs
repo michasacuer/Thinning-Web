@@ -35,11 +35,6 @@
             {
                 TestRuns.Add(new TestRun(run));
             }
-
-            foreach (var image in testLineDao.TestLineImages)
-            {
-                Images.Add(new Image(image));
-            }
         }
     }
 }

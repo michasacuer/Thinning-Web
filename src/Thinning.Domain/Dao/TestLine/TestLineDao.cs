@@ -10,6 +10,5 @@
         public string AlgorithmName { get; set; }
         public int Iterations { get; set; }
         public List<TestRunDao> AlgorithmTestRuns { get; set; }
-        public List<ImageDao> TestLineImages { get; set; } 
     }
 }
