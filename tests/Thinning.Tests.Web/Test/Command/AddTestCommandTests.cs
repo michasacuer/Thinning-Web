@@ -30,7 +30,8 @@
             _testService = new TestService(
                 new TestRepository(fixture.Connection),
                 new TestAlgorithmRepository(fixture.Context),
-                fixture.Context);
+                fixture.Context,
+                new PcInfoRepository(fixture.Connection));
         }
 
         public async Task AddTestShouldAddTestIntoDatabase()

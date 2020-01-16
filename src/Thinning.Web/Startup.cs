@@ -51,6 +51,7 @@ namespace Thinning.Web
             services.AddScoped<IDatabaseConnection, DatabaseConnection>();
             services.AddScoped<IAlgorithmRepository, AlgorithmRepository>();
             services.AddScoped<ITestRepository, TestRepository>();
+            services.AddScoped<IPcInfoRepository, PcInfoRepository>();
             services.AddScoped<IThinningDbContext, ThinningDbContext>();
             services.AddDbContext<ThinningDbContext>(options =>
                 options.UseSqlServer(_configuration.GetConnectionString("ThinningDatabase")));

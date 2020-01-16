@@ -5,6 +5,7 @@
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Thinning.Domain;
+    using Thinning.Domain.Dao;
     using Thinning.Domain.Dao.Test;
     using Thinning.Domain.Enum;
     using Thinning.Persistence.Interfaces;
@@ -16,12 +17,18 @@
     {
         private ITestRepository _testRepository;
         private IAlgorithmRepository _algorithmRepository;
+        private IPcInfoRepository _pcInfoRepository;
         private IThinningDbContext _context;
 
-        public TestService(ITestRepository testRepository, IAlgorithmRepository algorithmRepository, IThinningDbContext context)
+        public TestService(
+            ITestRepository testRepository,
+            IAlgorithmRepository algorithmRepository,
+            IThinningDbContext context,
+            IPcInfoRepository pcInfoRepository)
         {
             _testRepository = testRepository;
             _algorithmRepository = algorithmRepository;
+            _pcInfoRepository = pcInfoRepository;
             _context = context;
         }
 
@@ -50,6 +57,21 @@
 
             MapImagesToTestLines(test);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<GridResponse<TestDto>> GetTestList(int size, int skip, string orderDir, string orderBy)
+        {
+            size = size == 0 ? 5 : size;
+            orderDir = string.IsNullOrWhiteSpace(orderDir) ? "asc" : orderDir;
+            orderBy = string.IsNullOrWhiteSpace(orderBy) ? "TestId" : orderBy;
+
+            var grid = await _testRepository.GetTestList(size, skip, orderDir, orderBy);
+            foreach (var test in grid.List)
+            {
+                test.TestPcInfo = await _pcInfoRepository.GetTestPcInfo(test.TestId);
+            }
+
+            return grid;
         }
 
         private async Task AlgorithmIdsToRequest(AddTestDao request)

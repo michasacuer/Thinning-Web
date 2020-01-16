@@ -4,6 +4,9 @@
     using Microsoft.AspNetCore.Mvc;
     using Thinning.Application.Test.Command.AcceptTest;
     using Thinning.Application.Test.Command.AddTest;
+    using Thinning.Application.Test.Query.GetTestList;
+    using Thinning.Domain.Dao;
+    using Thinning.Domain.Dao.Test;
 
     public class TestController : BaseController
     {
@@ -17,6 +20,12 @@
         public async Task<IActionResult> AddTest(AcceptTestCommand command)
         {
             return Ok(await Mediator.Send(command));
+        }
+
+        [HttpPost("list")]
+        public async Task<ActionResult<GridResponse<TestDto>>> GetTestList(GetTestListQuery query)
+        {
+            return Ok(await Mediator.Send(query));
         }
     }
 }

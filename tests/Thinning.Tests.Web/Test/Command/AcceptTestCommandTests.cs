@@ -25,7 +25,8 @@
             _testService = new TestService(
                 new TestRepository(fixture.Connection),
                 new AlgorithmRepository(fixture.Connection),
-                fixture.Context);
+                fixture.Context,
+                new PcInfoRepository(fixture.Connection));
         }
 
         [Fact]
