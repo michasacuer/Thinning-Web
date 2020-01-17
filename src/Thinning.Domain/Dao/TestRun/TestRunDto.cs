@@ -2,6 +2,6 @@
 {
     public class TestRunDto : TestRunDao
     {
-        public int TestLineId { get; set; }
+        public int TestLinesId { get; set; }
     }
 }

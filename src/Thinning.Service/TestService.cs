@@ -19,6 +19,7 @@
         private IAlgorithmRepository _algorithmRepository;
         private IPcInfoRepository _pcInfoRepository;
         private ITestLineRepository _testLineRepository;
+        private ITestRunRepository _testRunRepository;
         private IThinningDbContext _context;
 
         public TestService(
@@ -26,12 +27,14 @@
             IAlgorithmRepository algorithmRepository,
             IThinningDbContext context,
             IPcInfoRepository pcInfoRepository,
-            ITestLineRepository testLineRepository)
+            ITestLineRepository testLineRepository,
+            ITestRunRepository testRunRepository)
         {
             _testRepository = testRepository;
             _algorithmRepository = algorithmRepository;
             _pcInfoRepository = pcInfoRepository;
             _testLineRepository = testLineRepository;
+            _testRunRepository = testRunRepository;
             _context = context;
         }
 
@@ -69,6 +72,8 @@
 
             test.PcInfo = await _pcInfoRepository.GetTestPcInfo(testId);
             test.TestLines = await _testLineRepository.GetTestLinesAsync(testId);
+
+            var testRuns = await _testRunRepository.GetTestLineTestRunsAsync(test.TestLines.Select(line => line.TestLineId));
 
             return test;
         }

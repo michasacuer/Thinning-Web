@@ -5,7 +5,7 @@
     using Thinning.Domain.Dao.TestRun;
 
     public interface ITestRunRepository
-    {;
-        Task<IEnumerable<TestRunDto>> GetTestLineTestRunsAsync()
+    {
+        Task<IEnumerable<TestRunDto>> GetTestLineTestRunsAsync(IEnumerable<int> testLineIds);
     }
 }
