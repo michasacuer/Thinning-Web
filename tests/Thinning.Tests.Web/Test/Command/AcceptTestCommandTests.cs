@@ -4,29 +4,20 @@
     using System.Threading.Tasks;
     using Shouldly;
     using Xunit;
+    using Thinning.Application.Exception;
     using Thinning.Application.Test.Command.AcceptTest;
     using Thinning.Domain.Enum;
     using Thinning.Persistence.Interfaces;
-    using Thinning.Persistence.Repository;
-    using Thinning.Service;
-    using Thinning.Service.Exception;
-    using Thinning.Service.Interfaces;
     using Thinning.Tests.Web.Infrastructure;
 
     [Collection("ServicesTestCollection")]
     public class AcceptTestCommandTests
     {
-        private readonly ITestService _testService;
         private readonly IThinningDbContext _context;
 
         public AcceptTestCommandTests(ServicesFixture fixture)
         {
             _context = fixture.Context;
-            _testService = new TestService(
-                new TestRepository(fixture.Connection),
-                new AlgorithmRepository(fixture.Connection),
-                fixture.Context,
-                new PcInfoRepository(fixture.Connection));
         }
 
         [Fact]
@@ -39,7 +30,7 @@
                 Guid = test.ActivationUrl
             };
 
-            var commandHandler = new AcceptTestCommandHandler(_testService);
+            var commandHandler = new AcceptTestCommandHandler(_context);
             await commandHandler.Handle(command, CancellationToken.None);
 
             var acceptedTest = _context.Tests.Find(1);
@@ -56,7 +47,7 @@
                 Guid = "SomeRandom"
             };
 
-            var commandHandler = new AcceptTestCommandHandler(_testService);
+            var commandHandler = new AcceptTestCommandHandler(_context);
             await commandHandler.Handle(command, CancellationToken.None).ShouldThrowAsync<EntityNotFoundException>();
         }
     }

@@ -27,7 +27,6 @@
         
                 ").AsEnumerable();
 
-            var d = algorithms.ToList();
 
             return algorithms;
         }
