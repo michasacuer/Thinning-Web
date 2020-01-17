@@ -1,12 +1,14 @@
 ﻿namespace Thinning.Service
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Thinning.Domain;
     using Thinning.Domain.Dao;
     using Thinning.Domain.Dao.Test;
+    using Thinning.Domain.Dao.TestRun;
     using Thinning.Domain.Enum;
     using Thinning.Persistence.Interfaces;
     using Thinning.Persistence.Interfaces.Repository;
@@ -74,6 +76,11 @@
             test.TestLines = await _testLineRepository.GetTestLinesAsync(testId);
 
             var testRuns = await _testRunRepository.GetTestLineTestRunsAsync(test.TestLines.Select(line => line.TestLineId));
+            foreach (var testLine in test.TestLines)
+            {
+                testLine.AlgorithmTestRuns = new List<TestRunDto>();
+                testLine.AlgorithmTestRuns = testRuns.Where(run => run.TestLinesId == testLine.TestLineId);
+            }
 
             return test;
         }
