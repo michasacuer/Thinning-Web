@@ -23,11 +23,11 @@
             var parameters = new DynamicParameters();
             parameters.Add("@testId", testId);
 
-            var connection = _databaseConnection.GetOpenConnection();
+            using var connection = _databaseConnection.GetOpenConnection();
             var results = await connection.QueryMultipleAsync("GetTestLines", parameters, commandType: CommandType.StoredProcedure);
 
             var testLines = results.Read<TestLineDto>().AsList();
-            var images = results.Read<ImageDto>().AsList();
+            var images = results.Read<TestImageDto>().AsList();
 
             foreach (var testLine in testLines)
             {

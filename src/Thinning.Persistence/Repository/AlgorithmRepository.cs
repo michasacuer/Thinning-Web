@@ -21,7 +21,7 @@
             var parameters = new DynamicParameters();
             parameters.Add("@names", string.Join(",", names.ToArray()));
 
-            var connection = _databaseConnection.GetOpenConnection();   
+            using var connection = _databaseConnection.GetOpenConnection();   
             return await connection.QueryAsync<Algorithm>("GetAlgorithmsByName", parameters, commandType: CommandType.StoredProcedure);
         }
     }

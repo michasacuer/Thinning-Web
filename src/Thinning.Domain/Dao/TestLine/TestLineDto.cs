@@ -7,7 +7,7 @@
     public class TestLineDto
     {
         public int TestLineId { get; set; }
-        public ImageDto Image { get; set; }
+        public TestImageDto Image { get; set; }
         public int? AlgorithmId { get; set; }
         public string AlgorithmName { get; set; }
         public int Iterations { get; set; }

@@ -40,6 +40,10 @@
             builder.Register(c => new PcInfoRepository(new DatabaseConnection(_connectionString)))
                 .As<IPcInfoRepository>()
                 .InstancePerLifetimeScope();
+
+            builder.Register(c => new ImageRepository(new DatabaseConnection(_connectionString)))
+                .As<IImageRepository>()
+                .InstancePerLifetimeScope();
         }
     }
 }

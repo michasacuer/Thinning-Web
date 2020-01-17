@@ -34,7 +34,7 @@
             parameters.Add("@orderBy", orderBy);
             parameters.Add("@totalCount", dbType: DbType.Int32, direction: ParameterDirection.Output);
 
-            var connection = _databaseConnection.GetOpenConnection();
+            using var connection = _databaseConnection.GetOpenConnection();
 
             var tests = await connection.QueryAsync<TestDto>("GetTestList", parameters, commandType: CommandType.StoredProcedure);
             int totalCount = parameters.Get<int>("@totalCount");

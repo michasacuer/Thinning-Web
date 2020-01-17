@@ -20,7 +20,7 @@
                     Directory.GetCurrentDirectory() + string.Format("{0}..{0}Thinning.Persistence\\Procedures",
                     Path.DirectorySeparatorChar));
 
-            var connection = _connection.GetOpenConnection();
+            using var connection = _connection.GetOpenConnection();
             foreach (string file in files)
             {
                 connection.Execute(File.ReadAllText(file, Encoding.UTF8));

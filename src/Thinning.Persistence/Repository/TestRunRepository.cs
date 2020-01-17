@@ -25,7 +25,7 @@
                 dataTable.Rows.Add(id);
             }
 
-            var connection = _databaseConnection.GetOpenConnection();
+            using var connection = _databaseConnection.GetOpenConnection();
 
             return await connection.QueryAsync<TestRunDto>(
                 "GetTestRunsFromTestLines",
