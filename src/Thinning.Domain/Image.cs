@@ -1,5 +1,6 @@
 ﻿namespace Thinning.Domain
 {
+    using System.Drawing.Imaging;
     using Thinning.Domain.Dao.Image;
     
     public class Image
@@ -14,7 +15,7 @@
         public byte[] ImageContent { get; set; }
         public int OriginalWidth { get; set; }
         public int OriginalHeight { get; set; }
-        public int OriginalBpp { get; set; }
+        public PixelFormat OriginalBpp { get; set; }
         public bool TestImage { get; set; }
 
         public Image()
