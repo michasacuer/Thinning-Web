@@ -8,7 +8,14 @@
 
 <h3>Details</h3>
 
-<MatTable Items="@items" class="mat-elevation-z5">
+<MatSelect Label="Size" @bind-Value="@size">
+    <MatOption TValue="int" Value="5">5</MatOption>
+    <MatOption TValue="int" Value="10">10</MatOption>
+    <MatOption TValue="int" Value="15">15</MatOption>
+    <MatOption TValue="int" Value="20">20</MatOption>
+</MatSelect>
+
+<MatTable Items="@items" class="mat-elevation-z5" ShowPaging="false">
     <MatTableHeader>
         <th>Test Id</th>
         <th>Status Code</th>
@@ -21,8 +28,11 @@
     </MatTableRow>
 </MatTable>
 
+<span>@size</span>
+
 @code {
     List<TestDto> items;
+    int size;
 
     protected override async Task OnInitializedAsync()
     {
