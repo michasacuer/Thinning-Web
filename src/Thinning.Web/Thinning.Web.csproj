@@ -21,4 +21,8 @@
     <ProjectReference Include="..\Thinning.Application\Thinning.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Component\" />
+  </ItemGroup>
+
 </Project>

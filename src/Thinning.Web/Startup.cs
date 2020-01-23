@@ -1,5 +1,6 @@
 namespace Thinning.Web
 {
+    using System.Net.Http;
     using Autofac;
     using FluentValidation.AspNetCore;
     using MediatR;
@@ -12,8 +13,6 @@ namespace Thinning.Web
     using Thinning.Application.Test.Command.AddTest;
     using Thinning.Persistence;
     using Thinning.Persistence.Interfaces;
-    using Thinning.Persistence.Interfaces.Repository;
-    using Thinning.Persistence.Repository;
     using Thinning.Web.Filters;
     using Thinning.Web.Filters.Validator.Test;
 
@@ -49,6 +48,7 @@ namespace Thinning.Web
                 options.UseSqlServer(_configuration.GetConnectionString("ThinningDatabase")));
 
             services.AddMediatR(typeof(AddTestCommandHandler).Assembly);
+            services.AddScoped<HttpClient>();
         }
 
         public void ConfigureContainer(ContainerBuilder builder)

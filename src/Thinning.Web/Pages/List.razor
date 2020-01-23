@@ -1,0 +1,33 @@
+﻿@page "/list"
+
+@using MediatR
+@using Thinning.Application.Test.Query.GetTestList
+@using Thinning.Domain.Dao.Test
+
+@inject IMediator _mediator
+
+<h3>Details</h3>
+
+<MatTable Items="@items" class="mat-elevation-z5">
+    <MatTableHeader>
+        <th>Test Id</th>
+        <th>Status Code</th>
+        <th>Avarage ExecutionTime</th>
+    </MatTableHeader>
+    <MatTableRow>
+        <td>@context.TestId</td>
+        <td>@context.ActivationStatusCode</td>
+        <td>@context.AvarageExecutionTime</td>
+    </MatTableRow>
+</MatTable>
+
+@code {
+    List<TestDto> items;
+
+    protected override async Task OnInitializedAsync()
+    {
+        
+        var grid = await _mediator.Send(new GetTestListQuery());
+        items = grid.List;
+    }
+}
