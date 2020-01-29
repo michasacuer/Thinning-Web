@@ -7,6 +7,7 @@
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="5.0.1" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="8.6.1" />
+    <PackageReference Include="MatBlazor" Version="2.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.0" />
@@ -18,6 +19,10 @@
     <ProjectReference Include="..\Thinning.Domain\Thinning.Domain.csproj" />
     <ProjectReference Include="..\Thinning.Persistence\Thinning.Persistence.csproj" />
     <ProjectReference Include="..\Thinning.Application\Thinning.Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pages\Component\" />
   </ItemGroup>
 
 </Project>
