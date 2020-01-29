@@ -39,16 +39,16 @@
             var test = await _testRepository.GetTestByIdAsync(request.TestId)
                     ?? throw new EntityNotFoundException("Test not found in dbo.Tests");
 
-            test.PcInfo = await GetTestPcInfo(test.TestId);
-            test.TestLines = await GetFullTestLines(test.TestId);
-            test = await AttachImagesToTest(test);
+            test.PcInfo = await GetTestPcInfoAsync(test.TestId);
+            test.TestLines = await GetFullTestLinesAsync(test.TestId);
+            test = await AttachImagesToTestAsync(test);
 
             return test;
         }
 
-        private async Task<PcInfoDto> GetTestPcInfo(int testId) => await _pcInfoRepository.GetTestPcInfo(testId);
+        private async Task<PcInfoDto> GetTestPcInfoAsync(int testId) => await _pcInfoRepository.GetTestPcInfo(testId);
 
-        private async Task<IEnumerable<TestLineDto>> GetFullTestLines(int testId)
+        private async Task<IEnumerable<TestLineDto>> GetFullTestLinesAsync(int testId)
         {
             var testLines = await _testLineRepository.GetTestLinesAsync(testId);
             var testRuns = await _testRunRepository.GetTestLineTestRunsAsync(testLines.Select(line => line.TestLineId));
@@ -62,7 +62,7 @@
             return testLines;
         }
 
-        private async Task<TestDetailsDto> AttachImagesToTest(TestDetailsDto test)
+        private async Task<TestDetailsDto> AttachImagesToTestAsync(TestDetailsDto test)
         {
             var images = await _imageRepository.GetTestImagesAsync(test.TestId);
             test.BaseImage = images.First(image => image.TestImage);
