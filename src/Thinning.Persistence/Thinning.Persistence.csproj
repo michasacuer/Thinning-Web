@@ -22,4 +22,10 @@
     <ProjectReference Include="..\Thinning.Domain\Thinning.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include ="Procedures\**">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
