@@ -39,7 +39,7 @@
             var tests = await connection.QueryAsync<TestDto>("GetTestList", parameters, commandType: CommandType.StoredProcedure);
             int totalCount = parameters.Get<int>("@totalCount");
 
-            return new GridResponse<TestDto> { List = tests.AsList(), Size = totalCount };
+            return new GridResponse<TestDto> { List = tests, Size = totalCount };
         }
     }
 }

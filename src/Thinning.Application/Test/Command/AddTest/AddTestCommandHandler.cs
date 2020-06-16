@@ -24,7 +24,7 @@
 
         public async Task<Unit> Handle(AddTestCommand request, CancellationToken cancellationToken)
         {
-            await AlgorithmIdsToRequest(request);
+            await AlgorithmIdsToRequestAsync(request);
 
             var test = new Test(new AddTestDao(request.Sent, request.TestLines, request.PcInfo, request.Images));
             test.ActivationStatusCode = ActivationStatusCode.Audit;
@@ -39,7 +39,7 @@
             return Unit.Value;
         }
 
-        private async Task AlgorithmIdsToRequest(AddTestCommand request)
+        private async Task AlgorithmIdsToRequestAsync(AddTestCommand request)
         {
             var algorithmNames = request.Images.Select(image => image.AlgorithmName);
             var testAlgorithms = await _algorithmRepository.GetAlgorithmsByNameAsync(algorithmNames);
