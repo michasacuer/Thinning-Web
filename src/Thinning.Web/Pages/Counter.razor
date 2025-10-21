@@ -1,10 +1,17 @@
 ﻿@page "/counter"
 
-<h1>Counter</h1>
+<div class="counter-container">
+    <h1>Interactive Counter</h1>
+    <p>Click the button below to increment the counter</p>
 
-<p>Current count: @currentCount</p>
-
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+    <div class="counter-card">
+        <div class="counter-label">Current Count</div>
+        <div class="counter-value">@currentCount</div>
+        <button class="btn btn-primary" @onclick="IncrementCount">
+            <span class="oi oi-plus" aria-hidden="true"></span> Increment
+        </button>
+    </div>
+</div>
 
 @code {
     int currentCount = 0;
